@@ -1,0 +1,46 @@
+# Overview of the Analysis
+The purpose of this analysis is to create a deep learning model to predict successful funding applications for Alphabet Soup, a charity organization. By analyzing the provided dataset and developing a neural network model, we aim to improve the decision-making process and increase the likelihood of funding successful applications.
+
+# Results
+## Data Preprocessing
+- Target Variable:
+-- The target variable for the model is IS_SUCCESSFUL, which indicates whether a funding application was successful.
+- Feature Variables:
+-- The feature variables include EIN, NAME, APPLICATION_TYPE, AFFILIATION, CLASSIFICATION, USE_CASE, ORGANIZATION, STATUS, INCOME_AMT, SPECIAL_CONSIDERATIONS, and ASK_AMT.
+- Removed Variables:
+-- The columns EIN and NAME were removed initially as they are identifiers and do not contribute to the prediction of the target variable.
+-- During optimization, the column APPLICATION_TYPE was also dropped to reduce noise and improve model performance.
+# Compiling, Training, and Evaluating the Model
+## Neurons, Layers, and Activation Functions:
+### Initial Model:
+- The initial model had hidden layers with up to 64 neurons using the ReLU activation function.
+- A dense layer was added to construct the neural network.
+### First Optimization Attempt:
+- Increased the number of neurons in hidden layers to 128 to capture more complex patterns in the data.
+### Second Optimization Attempt:
+- Further increased the number of neurons in hidden layers to 256.
+- Added BatchNormalization layers to improve training speed and stability.
+- Added EarlyStopping to prevent overfitting and stop training once the model stops improving.
+### Third Optimization Attempt:
+- Increased the number of neurons in hidden layers to 512.
+- Added Adam optimizer with a learning rate of 0.001 to enhance model training.
+### Final Model Structure:
+#### The final model consisted of:
+- Input Layer: Number of input features determined by the dataset.
+- Hidden Layers: Five hidden layers with 512, 256, 128, 64, and 32 neurons, respectively, using the ReLU activation function.
+- Dropout Layers: Dropout layers with a dropout rate of 20% to prevent overfitting.
+- Batch Normalization Layers: Batch normalization layers after each hidden layer to improve training speed and stability.
+- Output Layer: A single neuron with the sigmoid activation function to output a probability score for the binary classification task.
+# Model Performance:
+The target model performance aimed to achieve an accuracy higher than 75%. The final model achieved an accuracy of approximately 70.51%, which did not meet the target performance.
+# Steps to Increase Model Performance:
+- Increased Neurons and Layers: Gradually increased the number of neurons from 64 to 128, 256, and finally 512 across multiple optimization attempts.
+- Dropout Layers: Added dropout layers to prevent overfitting.
+- Batch Normalization: Implemented batch normalization to improve the stability and performance of the network.
+- Different Optimizer and Learning Rate: Used the Adam optimizer with a learning rate of 0.001.
+- Early Stopping: Implemented early stopping to avoid overfitting and ensure the model stops training once it stops improving.
+- Feature Selection: Dropped the APPLICATION_TYPE column during optimization to reduce noise.
+# Summary
+The deep learning model developed for Alphabet Soup achieved an accuracy of approximately 70.51%, which is below the target of 75%. Despite several optimization attempts, including increasing neurons and layers, adding dropout and batch normalization layers, experimenting with different optimizers and learning rates, and refining the feature set, the model did not reach the desired performance level.
+
+To improve the classification performance, a different model such as a Random Forest or Gradient Boosting classifier could be explored. These models are often effective for structured/tabular data and can handle feature interactions and non-linear relationships well. Ensemble methods like these could provide a robust alternative to neural networks for this specific problem, potentially yielding better performance in predicting successful funding applications.
